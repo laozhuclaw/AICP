@@ -174,13 +174,13 @@
         </div>
         <p class="eyebrow">授权访问</p>
         <h1 id="auth-title">AICP 闭环赋能体系</h1>
-        <p class="copy">当前页面仅用于内部演示与节前沟通，请输入授权码后访问。</p>
+        <p class="copy">当前页面仅用于内部演示与节前沟通。白名单 IP 可直接访问，其他用户请输入授权码进入。</p>
 
         <form id="auth-form" autocomplete="off">
           <label for="access-code">访问授权码</label>
           <input id="access-code" name="access-code" type="password" inputmode="text" required />
           <button type="submit">进入演示网站</button>
-          <p class="hint">授权后将在本设备保留 12 小时访问权限。</p>
+          <p class="hint">授权码：AICP。授权后将在本设备保留 12 小时访问权限。</p>
           <p class="error" id="auth-error" role="status" aria-live="polite"></p>
         </form>
       </section>
@@ -190,7 +190,7 @@
       const form = document.querySelector("#auth-form");
       const input = document.querySelector("#access-code");
       const error = document.querySelector("#auth-error");
-      const expectedHash = "f47571acf5e85d0a1f5965067885f41376df53d62005f4a54c430835ea25e188";
+      const expectedHash = "092a516df8c75ca5240be8d94e09c239ce5bb3466aa011204d3df924455e10e5";
       const accessToken = "aicp_20260427_authorized_access";
 
       async function sha256(value) {
