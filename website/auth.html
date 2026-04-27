@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AICP 授权访问</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #102033;
+        --muted: #617085;
+        --line: rgba(255, 255, 255, 0.2);
+        --blue: #1976d2;
+        --cyan: #7fe8ff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family:
+          Inter, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+        color: #fff;
+        background:
+          radial-gradient(circle at 78% 22%, rgba(35, 157, 210, 0.34), transparent 32%),
+          radial-gradient(circle at 12% 84%, rgba(25, 118, 210, 0.28), transparent 30%),
+          linear-gradient(115deg, rgba(5, 20, 38, 0.98), rgba(5, 28, 52, 0.88)),
+          #102846;
+      }
+
+      main {
+        display: grid;
+        min-height: 100vh;
+        grid-template-columns: minmax(0, 1fr);
+        align-items: center;
+        padding: clamp(28px, 6vw, 86px);
+      }
+
+      .auth-card {
+        width: min(560px, 100%);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 54px;
+        font-size: 22px;
+        font-weight: 900;
+      }
+
+      .brand-mark {
+        display: inline-grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border-radius: 10px;
+        color: #0a4f91;
+        background: #fff;
+        font-size: 16px;
+      }
+
+      .eyebrow {
+        margin: 0 0 14px;
+        color: var(--cyan);
+        font-size: clamp(20px, 2.2vw, 28px);
+        font-weight: 900;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(46px, 8vw, 86px);
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+
+      .copy {
+        max-width: 520px;
+        margin: 24px 0 0;
+        color: rgba(255, 255, 255, 0.86);
+        font-size: clamp(18px, 2vw, 24px);
+        line-height: 1.65;
+      }
+
+      form {
+        display: grid;
+        gap: 14px;
+        margin-top: 38px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: rgba(10, 28, 50, 0.62);
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.26);
+        backdrop-filter: blur(18px);
+      }
+
+      label {
+        color: rgba(255, 255, 255, 0.84);
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      input {
+        width: 100%;
+        min-height: 54px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 8px;
+        padding: 0 16px;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.1);
+        font-size: 20px;
+        font-weight: 800;
+        outline: none;
+      }
+
+      input:focus {
+        border-color: var(--cyan);
+        box-shadow: 0 0 0 4px rgba(127, 232, 255, 0.15);
+      }
+
+      button {
+        min-height: 54px;
+        border: 0;
+        border-radius: 8px;
+        color: #fff;
+        background: var(--blue);
+        font-size: 19px;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      .hint,
+      .error {
+        min-height: 26px;
+        margin: 0;
+        font-size: 15px;
+      }
+
+      .hint {
+        color: rgba(255, 255, 255, 0.68);
+      }
+
+      .error {
+        color: #ffd2d2;
+        font-weight: 800;
+      }
+
+      @media (max-width: 640px) {
+        main {
+          align-items: end;
+          padding: 22px;
+        }
+
+        .brand {
+          margin-bottom: 34px;
+        }
+
+        form {
+          padding: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="auth-card" aria-labelledby="auth-title">
+        <div class="brand" aria-label="AICP">
+          <span class="brand-mark">AI</span>
+          <span>AICP</span>
+        </div>
+        <p class="eyebrow">授权访问</p>
+        <h1 id="auth-title">AICP 闭环赋能体系</h1>
+        <p class="copy">当前页面仅用于内部演示与节前沟通，请输入授权码后访问。</p>
+
+        <form id="auth-form" autocomplete="off">
+          <label for="access-code">访问授权码</label>
+          <input id="access-code" name="access-code" type="password" inputmode="text" required />
+          <button type="submit">进入演示网站</button>
+          <p class="hint">授权后将在本设备保留 12 小时访问权限。</p>
+          <p class="error" id="auth-error" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      const form = document.querySelector("#auth-form");
+      const input = document.querySelector("#access-code");
+      const error = document.querySelector("#auth-error");
+      const expectedHash = "f47571acf5e85d0a1f5965067885f41376df53d62005f4a54c430835ea25e188";
+      const accessToken = "aicp_20260427_authorized_access";
+
+      async function sha256(value) {
+        const encoded = new TextEncoder().encode(value.trim());
+        const hash = await crypto.subtle.digest("SHA-256", encoded);
+        return Array.from(new Uint8Array(hash))
+          .map((byte) => byte.toString(16).padStart(2, "0"))
+          .join("");
+      }
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        error.textContent = "";
+        const codeHash = await sha256(input.value);
+
+        if (codeHash !== expectedHash) {
+          error.textContent = "授权码不正确，请确认后重新输入。";
+          input.select();
+          return;
+        }
+
+        document.cookie = `aicp_access=${accessToken}; Max-Age=43200; Path=/aicp/; SameSite=Lax`;
+        window.location.href = "/aicp/?v=authorized-20260427";
+      });
+    </script>
+  </body>
+</html>
