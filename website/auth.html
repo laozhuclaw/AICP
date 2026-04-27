@@ -325,7 +325,7 @@
           <span>AICP</span>
           <span>闭环赋能体系</span>
         </h1>
-        <p class="copy">当前页面仅用于内部演示与节前沟通，支持白名单 IP 直接接入，也支持授权码临时访问。</p>
+        <p class="copy">当前页面仅用于内部演示与沟通交流，支持白名单 IP 直接接入，也支持授权码临时访问。</p>
         <div class="access-list" aria-label="接入方式">
           <div class="access-item">
             <strong>IP 白名单接入</strong>
@@ -333,7 +333,7 @@
           </div>
           <div class="access-item">
             <strong>授权码接入</strong>
-            <span>临时演示使用授权码进入，访问权限保留 12 小时。</span>
+            <span>临时演示使用授权码进入，访问权限保留 24 小时。</span>
           </div>
         </div>
       </section>
@@ -346,7 +346,7 @@
           <label for="access-code">访问授权码</label>
           <input id="access-code" name="access-code" type="password" inputmode="text" placeholder="请输入 AICP" required />
           <button type="submit">进入演示网站</button>
-          <p class="hint">授权码：AICP。授权后将在本设备保留 12 小时访问权限。</p>
+          <p class="hint">授权码：AICP。授权后将在本设备保留 24 小时访问权限。</p>
           <p class="error" id="auth-error" role="status" aria-live="polite"></p>
         </form>
         <div class="status-row" aria-label="访问状态">
@@ -379,7 +379,7 @@
           return;
         }
 
-        document.cookie = `aicp_access=${accessToken}; Max-Age=43200; Path=/aicp/; SameSite=Lax`;
+        document.cookie = `aicp_access=${accessToken}; Max-Age=86400; Path=/aicp/; SameSite=Lax`;
         window.location.href = "/aicp/?v=authorized-20260427";
       });
     </script>
