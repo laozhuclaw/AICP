@@ -1,0 +1,4 @@
+file '/Users/zhujmac/AICP/video/0504修改版/分段视频/无字幕版/S02_aicp_cp_matching_AICP发单抢单撮合.mp4'
+file '/Users/zhujmac/AICP/video/0504修改版/分段视频/无字幕版/S04_ai_earpiece_gold_marketer_AI耳机金牌营销助手.mp4'
+file '/Users/zhujmac/AICP/video/0504修改版/分段视频/无字幕版/S06_ai_glasses_machine_room_inspection_AI眼镜机房巡检.mp4'
+file '/Users/zhujmac/AICP/video/0504修改版/分段视频/无字幕版/S08_aicp_final_climax_平台闭环与最终口号.mp4'
